@@ -1,0 +1,28 @@
+#cloud-config
+hostname: ${hostname}
+fqdn: ${fqdn}
+prefer_fqdn_over_hostname: true
+manage_etc_hosts: false
+
+disable_root: true
+ssh_pwauth: false
+
+users:
+  - name: sysadm
+    groups: wheel
+    shell: /bin/bash
+    no_create_home: false
+    homedir: /home/sysadm
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    lock_passwd: true
+    ssh_authorized_keys:
+      - ${ssh_key}
+
+runcmd:
+  - systemctl restart NetworkManager
+  - usermod -u 60000 sysadm
+  - groupmod -g 60000 sysadm
+  - chown -R sysadm:sysadm /home/sysadm
+%{ if disable_cloud_init }
+  - touch /etc/cloud/cloud-init.disabled
+%{ endif }

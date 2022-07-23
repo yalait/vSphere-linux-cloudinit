@@ -1,0 +1,17 @@
+network:
+  version: 1
+  config:
+    - type: physical
+      name: ${interface}
+      mtu: ${interface_mtu}
+      subnets:
+%{ if address_mode == "MANUAL" }
+        - type: static
+          address: ${address}
+          gateway: ${gateway}
+          netmask: ${mask}
+          dns_nameservers: ${nameservers}
+          dns_search: ${domains}
+%{ else }
+        - type: dhcp
+%{ endif }

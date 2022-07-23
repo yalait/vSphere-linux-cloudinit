@@ -1,0 +1,8 @@
+terraform.tfvars
+terraform.backend
+**/*.tfstate*
+plan/**
+plan*
+**/*.log
+**/.terraform/**
+**/*.code-workspace
