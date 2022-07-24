@@ -11,7 +11,7 @@ variable "vsphere_server" {
 
 variable "vsphere_user" {
   type = string
-  description = "Имя пользователя для подключения,если домееная авторихация то требуется указывать домен. Пример: oncloud/smirnovmv"
+  description = "Имя пользователя для подключения,если доменая авторизация то требуется указывать домен. Пример: oncloud/smirnovmv"
 }
 
 variable "vsphere_password" {
@@ -103,7 +103,6 @@ variable "ipv4_gateway" {
 
 variable "vmfolder" {
   type        = string
-  #description = "The path to the folder to put this virtual machine in, relative to the datacenter that the resource pool is in. Path - The absolute path of the folder. For example, given a default datacenter of default-dc, a folder of type vm, and a folder name of terraform-test-folder, the resulting path would be /default-dc/vm/terraform-test-folder."
   description = "Имя директории в которой будут созданы ресуры. Пример: TestTerr"
   default     = null
 }
@@ -131,13 +130,7 @@ variable "password" {
   default     = "123qwe"
 }
 
-/* variable "ssh_keys" {
-  type        = list(any)
-  description = "Открытый ключ которому разрешено подключаться к ВМ"
-  default     = []
-} */
-
-variable "ssh_keys" {
+variable "ssh_key" {
   type        = string
   description = "Открытый ключ которому разрешено подключаться к ВМ"
   default     = ""

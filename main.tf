@@ -23,7 +23,8 @@ resource "vsphere_tag" "tag" {
 
 resource vsphere_virtual_machine "vm" {
   name             = var.vm_name
-  resource_pool_id = data.vsphere_compute_cluster.compute_cluster.id
+  #resource_pool_id = data.vsphere_compute_cluster.compute_cluster.id
+  resource_pool_id = data.vsphere_resource_pool.pool.id
   datastore_id     = data.vsphere_datastore.datastore.id
   folder           = var.vmfolder
   num_cpus = var.cpu_number
@@ -59,7 +60,7 @@ resource vsphere_virtual_machine "vm" {
     {
       hostname           = var.hostname
       fqdn               = var.hostname
-      ssh_key            = var.ssh_keys
+      ssh_key            = var.ssh_key
       password = var.password
     }))
     }
